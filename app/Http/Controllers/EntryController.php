@@ -65,7 +65,9 @@ class EntryController extends Controller
      */
     public function edit(Entry $entry)
     {
-        //
+        $user = Auth::user();
+        $characters = $user->characters;
+        return view('entries.edit', compact('entry', 'characters'));
     }
 
     /**
@@ -73,7 +75,18 @@ class EntryController extends Controller
      */
     public function update(Request $request, Entry $entry)
     {
-        //
+        $user = Auth::user();
+
+        $entry->user_id = $user->id;
+        $entry->character_id = $request->character_id;
+        $entry->title = $request->title;
+        $entry->body = $request->body;
+        $entry->start = $request->start;
+        $entry->end = $request->end;
+
+        $entry->update();
+
+        return redirect('/home');
     }
 
     /**
@@ -81,6 +94,7 @@ class EntryController extends Controller
      */
     public function destroy(Entry $entry)
     {
-        //
+        $entry->delete();
+        return redirect('/home');
     }
 }

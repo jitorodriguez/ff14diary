@@ -34,7 +34,7 @@
     <form method="post" action="/characters/{{$character->id}}">
         @csrf
         <input type="hidden" name="_method" value="DELETE">
-        <input type="submit" name="Delete" value="Delete" class="btn btn-primary">
+        <input type="submit" name="Delete" value="Delete" class="btn btn-danger">
     </form>
 
     <br>
