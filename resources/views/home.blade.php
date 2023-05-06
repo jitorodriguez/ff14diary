@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header">{{ __('Entries') }}</div>
 
-                <div class="card-body">
+                <div class="card-body" style="background: antiquewhite">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
@@ -30,13 +30,28 @@
 
             <br>
 
-            <h3>Your Entries</h3>
-            @if($user->entries->count())
-                @foreach($user->entries as $entry)
-                @endforeach
-            @else
-                <p>No posts found. <a href="/entries/create">Add a entry?</a></p>
-            @endif
+            {{-- Entries section - To be moved to seperate view --}}
+            <div>
+                <div class="col-md-12" style="display: flex; justify-content: left; position:relative; margin-bottom: 10px">
+                    <h3>Your Entries</h3>
+                    <a href="/entries/create" style="position:absolute; right: 0px;"><button class="btn btn-primary">Add</button></a>
+                </div>
+                @if($user->entries->count())
+                    @foreach($user->entries as $entry)
+                    <div class="card">
+                        <div class="card-header">{{$entry->title}}</div>
+                        <div class="card-body">
+                            <p>Character: {{$entry->character->name}}</p>
+                            <p>{{$entry->body}}</p>
+                            <a style="float:right"href="entries/{{$entry->id}}/edit ">Edit</a>
+                        </div>
+                    </div>
+                    @endforeach
+                @else
+                    <p>No posts found. <a href="/entries/create">Add a entry?</a></p>
+                @endif
+            </div>
+            {{-- End of Entries section --}}
         </div>
     </div>
 </div>

@@ -10,4 +10,8 @@ class Entry extends Model
     use HasFactory;
 
     protected $fillable = ['character_id', 'title', 'body', 'start', 'end'];
+
+    public function character(){
+        return $this->hasOne(Character::class, 'id', 'character_id');
+    }
 }
