@@ -20,9 +20,23 @@
                         <div>
                             <p>No characters found, <a href="/characters/create">register a character</a>?</p>
                         </div>
+                    @else
+                        <div>
+                            <a href="/entries/create">Add a entry</a>
+                        </div>
                     @endif
                 </div>
             </div>
+
+            <br>
+
+            <h3>Your Entries</h3>
+            @if($user->entries->count())
+                @foreach($user->entries as $entry)
+                @endforeach
+            @else
+                <p>No posts found. <a href="/entries/create">Add a entry?</a></p>
+            @endif
         </div>
     </div>
 </div>

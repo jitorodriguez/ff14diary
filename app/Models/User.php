@@ -10,6 +10,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 //Models
 use App\Models\Character;
+use App\Models\Entry;
 
 class User extends Authenticatable
 {
@@ -47,5 +48,9 @@ class User extends Authenticatable
 
     public function characters(){
         return $this->hasMany(Character::class);
+    }
+
+    public function entries(){
+        return $this->hasMany(Entry::class);
     }
 }

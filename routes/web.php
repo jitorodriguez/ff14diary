@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\CharactersController;
+use App\Http\Controllers\EntryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,4 +25,6 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 //Setup resource routes for Characters
-Route::resource('characters', CharactersController::class);  
+Route::resource('characters', CharactersController::class);
+
+Route::resource('entries', EntryController::class);
