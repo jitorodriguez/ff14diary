@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
 //Models
-use App\Models\Characters;
+use App\Models\Character;
 
 class User extends Authenticatable
 {
@@ -46,6 +46,6 @@ class User extends Authenticatable
     ];
 
     public function characters(){
-        return $this->hasMany(Characters::class);
+        return $this->hasMany(Character::class);
     }
 }
