@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\CharactersController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,6 +23,5 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/characters', function(){
-    return "character page";
-});
+//Setup resource routes for Characters
+Route::resource('characters', CharactersController::class);  

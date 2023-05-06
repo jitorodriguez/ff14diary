@@ -14,7 +14,13 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                    {{ __('Welcome')}} {{$user->name}}!
+
+                    @if(!$user->characters->count())
+                        <div>
+                            <p>No characters found, <a href="/characters/create">register a character</a>?</p>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
