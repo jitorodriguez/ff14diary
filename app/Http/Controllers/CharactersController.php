@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Characters;
+use App\Models\Servers;
 use Illuminate\Http\Request;
 
 class CharactersController extends Controller
@@ -20,7 +21,8 @@ class CharactersController extends Controller
      */
     public function create()
     {
-        return view("characters.create");
+        $servers = Servers::All();
+        return view("characters.create", compact("servers"));
     }
 
     /**
