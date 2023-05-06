@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Entries') }}</div>
+                <div class="card-header">{{ __('Notice Center') }}</div>
 
                 <div class="card-body" style="background: antiquewhite">
                     @if (session('status'))
@@ -20,10 +20,6 @@
                         <div>
                             <p>No characters found, <a href="/characters/create">register a character</a>?</p>
                         </div>
-                    @else
-                        <div>
-                            <a href="/entries/create">Add a entry</a>
-                        </div>
                     @endif
                 </div>
             </div>
@@ -34,7 +30,9 @@
             <div>
                 <div class="col-md-12" style="display: flex; justify-content: left; position:relative; margin-bottom: 10px">
                     <h3>Your Entries</h3>
-                    <a href="/entries/create" style="position:absolute; right: 0px;"><button class="btn btn-primary">Add</button></a>
+                    @if($user->characters->count())
+                        <a href="/entries/create" style="position:absolute; right: 0px;"><button class="btn btn-primary">Add</button></a>
+                    @endif
                 </div>
                 @if($user->entries->count())
                     @foreach($user->entries as $entry)
@@ -48,7 +46,11 @@
                     </div>
                     @endforeach
                 @else
-                    <p>No posts found. <a href="/entries/create">Add a entry?</a></p>
+                    @if(!$user->characters->count())
+                        <p>Create character before creating entries</p>
+                    @else
+                        <p>No entries found.</p>
+                    @endif
                 @endif
             </div>
             {{-- End of Entries section --}}
