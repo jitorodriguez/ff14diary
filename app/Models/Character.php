@@ -14,6 +14,6 @@ class Character extends Model
     protected $fillable = ['user_id', 'name', 'server'];
 
     public function jobs(){
-        return $this->belongsToMany(Job::class);
+        return $this->morphToMany(Job::class, 'taggable');
     }
 }

@@ -66,7 +66,7 @@ class CharactersController extends Controller
         {
             if(isset($request[$job->shortname]))
             {
-                $character->jobs()->attach($job->id);
+                $character->jobs()->save($job);
             }
         }
 
@@ -111,7 +111,7 @@ class CharactersController extends Controller
                 $jobsToAssign[] = $job->id;
         }
         
-        $character->jobs()->sync($jobsToAssign);        
+        $character->jobs()->sync($jobsToAssign);
         return redirect('/characters');
     }
 
@@ -120,6 +120,7 @@ class CharactersController extends Controller
      */
     public function destroy(Character $character)
     {
+        $character->jobs()->detach();
         $character->delete();
         return redirect('/characters');
     }

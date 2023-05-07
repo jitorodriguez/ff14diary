@@ -28,8 +28,8 @@
                 <h5>Tanks</h5>
                 @foreach($tanks as $tank)
                 <div class='col-lg-12 col-md-12'>
-                    <input type="checkbox" id="{{$tank->name}}" name="{{$tank->name}}">
-                    <label for="{{$tank->name}}">{{$tank->name}}</label>
+                    <input type="checkbox" id="{{$tank->shortname}}" name="{{$tank->shortname}}">
+                    <label for="{{$tank->shortname}}">{{$tank->name}}</label>
                 </div>
                 @endforeach
             </div>
@@ -37,8 +37,8 @@
                 <h5>Healers</h5>
                 @foreach($healers as $healer)
                 <div class='col-lg-12 col-md-12'>
-                    <input type="checkbox" id="{{$healer->name}}" name="{{$healer->name}}">
-                    <label for="{{$healer->name}}">{{$healer->name}}</label>
+                    <input type="checkbox" id="{{$healer->shortname}}" name="{{$healer->shortname}}">
+                    <label for="{{$healer->shortname}}">{{$healer->name}}</label>
                 </div>
                 @endforeach
             </div>
@@ -48,8 +48,8 @@
                 <h5>DPS</h5>
                 @foreach($dpses as $dps)
                     <div style="float:left">
-                        <input type="checkbox" id="{{$dps->name}}" name="{{$dps->name}}">
-                        <label for="{{$dps->name}}" style="padding-right: 20px;">{{$dps->name}}</label>
+                        <input type="checkbox" id="{{$dps->shortname}}" name="{{$dps->shortname}}">
+                        <label for="{{$dps->shortname}}" style="padding-right: 20px;">{{$dps->name}}</label>
                     </div>
                 @endforeach
             </div>

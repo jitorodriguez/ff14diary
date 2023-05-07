@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 use App\Models\Character;
 
-class job extends Model
+class Job extends Model
 {
     use HasFactory;
 
