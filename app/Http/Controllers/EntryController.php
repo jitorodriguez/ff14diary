@@ -6,6 +6,8 @@ use App\Models\Entry;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use App\Http\Requests\EntryRequest;
+
 class EntryController extends Controller
 {
 
@@ -35,7 +37,7 @@ class EntryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(EntryRequest $request)
     {
         $user = Auth::user();
         $entry = new Entry();
@@ -73,7 +75,7 @@ class EntryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Entry $entry)
+    public function update(EntryRequest $request, Entry $entry)
     {
         $user = Auth::user();
 

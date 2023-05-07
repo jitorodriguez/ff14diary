@@ -49,5 +49,16 @@
             <input type="hidden" name="_method" value="DELETE">
             <input type="submit" name="Delete" value="Delete" class="btn btn-danger">
     </form>
+
+    @if(count($errors))
+        <div class="alert alert-dnager">
+            <ul>
+                @foreach($errors->all() as $error)
+                <li>{{$error}}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
 </div>
 @endsection

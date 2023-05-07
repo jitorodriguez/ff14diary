@@ -25,6 +25,13 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 //Setup resource routes for Characters
-Route::resource('characters', CharactersController::class);
+//Route::resource('characters', CharactersController::class);
 
-Route::resource('entries', EntryController::class);
+//Route::resource('entries', EntryController::class);
+
+Route::group(['middleware' => 'web'], function(){
+
+    Route::resource('characters', CharactersController::class);
+    Route::resource('entries', EntryController::class);
+
+});

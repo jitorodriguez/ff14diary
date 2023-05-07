@@ -10,6 +10,9 @@ use App\Models\Character;
 use App\Models\Server;
 use App\Models\Job;
 
+//Requests
+use App\Http\Requests\CharacterRequest;
+
 
 class CharactersController extends Controller
 {
@@ -45,7 +48,7 @@ class CharactersController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CharacterRequest $request)
     {
         //Initialize and declare user, list of jobs, and new character
         $user = Auth::user();
@@ -94,7 +97,7 @@ class CharactersController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Character $character)
+    public function update(CharacterRequest $request, Character $character)
     {
         $character->name = $request->name;
         $character->server = $request->serverid;
