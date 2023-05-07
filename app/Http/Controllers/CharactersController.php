@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 //Models
 use App\Models\Character;
 use App\Models\Server;
+use App\Models\Job;
 
 
 class CharactersController extends Controller
@@ -34,7 +35,11 @@ class CharactersController extends Controller
     public function create()
     {
         $servers = Server::All();
-        return view("characters.create", compact("servers"));
+        $tanks = Job::where(['role' => "Tank"])->get();
+        $healers = Job::where(['role' => "Healer"])->get();
+        $dpses = Job::where(['role' => "DPS"])->get();
+
+        return view("characters.create", compact("servers", "tanks", "healers", "dpses"));
     }
 
     /**
@@ -42,14 +47,25 @@ class CharactersController extends Controller
      */
     public function store(Request $request)
     {
+        //Initialize and declare user, list of jobs, and new character
         $user = Auth::user();
+        $jobs = Job::All();
         $character = new Character();
 
+        //Save character
         $character->user_id = $user->id;
         $character->name = $request->name;
         $character->server = $request->serverid;
-
         $character->save();
+        
+        //Attach jobs to character
+        foreach($jobs as $job)
+        {
+            if(isset($request[$job->shortname]))
+            {
+                $character->jobs()->attach($job->id);
+            }
+        }
 
         return redirect('/characters');
     }
@@ -68,7 +84,11 @@ class CharactersController extends Controller
     public function edit(Character $character)
     {
         $servers = Server::all();
-        return view('characters.edit', compact('character', 'servers'));
+        $tanks = Job::where(['role' => "Tank"])->get();
+        $healers = Job::where(['role' => "Healer"])->get();
+        $dpses = Job::where(['role' => "DPS"])->get();
+
+        return view('characters.edit', compact('character', 'servers', 'tanks', 'healers', 'dpses'));
     }
 
     /**
@@ -79,7 +99,16 @@ class CharactersController extends Controller
         $character->name = $request->name;
         $character->server = $request->serverid;
         $character->update();
+
+        //Retrieve all jobs to sync to character
+        $jobs = Job::All();
+        foreach($jobs as $job)
+        {
+            if(isset($request[$job->shortname]))
+                $jobsToAssign[] = $job->id;
+        }
         
+        $character->jobs()->sync($jobsToAssign);        
         return redirect('/characters');
     }
 
