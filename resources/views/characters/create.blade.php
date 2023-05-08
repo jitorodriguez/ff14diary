@@ -7,7 +7,7 @@
 
         {{-- Character section --}}
         <h3>Character Name</h3>
-        <input type="text" name="name" class="form-control" placeholder="Enter Characters Name">
+        <input type="text" name="name" value="{{old('name')}}" class="form-control" placeholder="Enter Characters Name">
         {{-- End of Character section --}}
 
         <br>
@@ -16,7 +16,7 @@
         <h3>Server</h3>
         <select name="serverid" id="serverid" class="form-control">
             @foreach($servers as $serv)
-                <option value="{{$serv->id}}">{{$serv->region}} - {{$serv->datacenter}} - {{$serv->name}}</option>
+                <option value="{{$serv->id}}" {{old('serverid') == $serv->id ? 'selected' : '' }}>{{$serv->region}} - {{$serv->datacenter}} - {{$serv->name}}</option>
             @endforeach
         </select>
         {{-- End of Server section --}}

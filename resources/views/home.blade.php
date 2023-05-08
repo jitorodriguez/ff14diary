@@ -40,6 +40,11 @@
                         <div class="card-header">{{$entry->title}}</div>
                         <div class="card-body">
                             <p>Character: {{$entry->character->name}}</p>
+                            <p>
+                                Start: {{Carbon\Carbon::parse($entry->start)}}
+                                <br/>
+                                Session Length: {{$entry->getSessionLength()}}
+                            </p>
                             <p><pre>{{(htmlentities($entry->body))}}</pre></p>
                             <a style="float:right"href="entries/{{$entry->id}}/edit ">Edit</a>
                         </div>

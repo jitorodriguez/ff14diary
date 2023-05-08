@@ -24,8 +24,8 @@ class EntryRequest extends FormRequest
         return [
             'character_id' => 'required',
             'title'=> 'required',
-            'start' => 'required',
-            'end' => 'required',
+            'start' => 'required|before:end',
+            'end' => 'required|after:start',
         ];
     }
 }
