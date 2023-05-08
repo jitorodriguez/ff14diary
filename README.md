@@ -1,3 +1,16 @@
+## Final Fantasy 14: Diaries
+
+This demo application was written to demonstrates core concepts of the laravel framework. It enables the user to register an account, add and manage their in-game characters, and write associated diary entries respective of their play sessions. The appllication itself has:
+
+- Migrations and Models that establish one-to-many and Polymorphic many-to-many relationships used for assigning characters to both user accounts and entries, as well as the jobs that can be shared between characters their associated entries.
+- Views for the home page, Characters, and Entry screens.
+- Controllers to handle the Character and Entry resource routes.
+- Form validation provided by custom Request classes.
+
+In the future, I look to enhance serveral aspects of the application to further its value as a collector of game activity. This involves interfacing w/ 3rd party imports of player session data brought by plugins like ACT (https://advancedcombattracker.com/download.php). The application will then use all this data to provide dashboards to visualize play sessions with meaningful data like combat performance, character progression, and times spent doing different types of activities, etc.
+
+_The application initial development intentionally does not install additional packages / middleware where possible to further realize core fundemantals of the framework._
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
