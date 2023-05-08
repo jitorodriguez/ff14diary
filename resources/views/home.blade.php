@@ -40,7 +40,7 @@
                         <div class="card-header">{{$entry->title}}</div>
                         <div class="card-body">
                             <p>Character: {{$entry->character->name}}</p>
-                            <p>{{$entry->body}}</p>
+                            <p><pre>{{(htmlentities($entry->body))}}</pre></p>
                             <a style="float:right"href="entries/{{$entry->id}}/edit ">Edit</a>
                         </div>
                     </div>
