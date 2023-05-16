@@ -35,3 +35,7 @@ Route::group(['middleware' => 'web'], function(){
     Route::resource('entries', EntryController::class);
 
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
