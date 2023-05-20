@@ -91,7 +91,7 @@ class CharactersController extends Controller
         $healers = Job::where(['role' => "Healer"])->get();
         $dpses = Job::where(['role' => "DPS"])->get();
 
-        return view('characters.edit', compact('character', 'servers', 'tanks', 'healers', 'dpses'));
+        return view('characters.create', compact('character', 'servers', 'tanks', 'healers', 'dpses'));
     }
 
     /**
