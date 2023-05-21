@@ -38,11 +38,9 @@ class CharactersController extends Controller
     public function create()
     {
         $servers = Server::All();
-        $tanks = Job::where(['role' => "Tank"])->get();
-        $healers = Job::where(['role' => "Healer"])->get();
-        $dpses = Job::where(['role' => "DPS"])->get();
+        $jobs = Job::All();
 
-        return view("characters.create", compact("servers", "tanks", "healers", "dpses"));
+        return view("characters.create", compact("servers", "jobs"));
     }
 
     /**
@@ -87,11 +85,9 @@ class CharactersController extends Controller
     public function edit(Character $character)
     {
         $servers = Server::all();
-        $tanks = Job::where(['role' => "Tank"])->get();
-        $healers = Job::where(['role' => "Healer"])->get();
-        $dpses = Job::where(['role' => "DPS"])->get();
+        $jobs = Job::All();
 
-        return view('characters.create', compact('character', 'servers', 'tanks', 'healers', 'dpses'));
+        return view('characters.create', compact('character', 'servers', 'jobs'));
     }
 
     /**

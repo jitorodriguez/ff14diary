@@ -7,15 +7,13 @@
     const props = defineProps({
         //Standard params
         servers: Array,
-        tanks: Array,
-        healers: Array,
-        dpses: Array,
+        jobs: Array,
         //Form Values
         newMode: Boolean,
         name: String,
         characterid: String,
         serverid: String,
-        jobs: {
+        activeJobs: {
             type: Array,
             default: []
         },
@@ -26,6 +24,12 @@
     const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
     
     const postAction = props.newMode ? '/characters' : '/characters/' + props.characterid;
+
+    function fiterJobType(jobType){
+        return props.jobs.filter(job => job.role === jobType);
+    }
+
+    console.log(props.activeJobs);
 
 </script>
 
@@ -55,9 +59,9 @@
             <!-- Jobs section -->
             <div class="row">
                 <h3>Jobs</h3>
-                <Jobs class="col-lg-6 col-md-6" title="Tanks" boot-width="6" :job-list="tanks" :active-jobs="jobs" />
-                <Jobs class="col-lg-6 col-md-6" title="Healers" boot-width="6" :job-list="healers" :active-jobs="jobs" />
-                <Jobs class="col-lg-12 col-md-12" title="DPS" boot-width="12" :job-list="dpses" :active-jobs="jobs" />
+                <Jobs class="col-lg-6 col-md-6" title="Tanks" boot-width="6" :job-list="fiterJobType('Tank')" :active-jobs="activeJobs" />
+                <Jobs class="col-lg-6 col-md-6" title="Healers" boot-width="6" :job-list="fiterJobType('Healer')" :active-jobs="activeJobs" />
+                <Jobs class="col-lg-12 col-md-12" title="DPS" boot-width="12" :job-list="fiterJobType('DPS')" :active-jobs="activeJobs" />
             </div>     
             <!-- End of Jobs section -->
 
