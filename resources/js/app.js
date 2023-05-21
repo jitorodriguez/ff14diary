@@ -16,10 +16,12 @@ import { createApp } from 'vue';
 const app = createApp({});
 
 import HomeComponent from './components/HomeComponent.vue';
+import CharactersComponent from './components/CharactersComponent.vue';
 import CharacterForm from './components/CharacterForm.vue';
 import EntryForm from './components/EntryForm.vue';
 
 app.component('home-component', HomeComponent);
+app.component('characters-component', CharactersComponent);
 app.component('character-form', CharacterForm);
 app.component('entry-form', EntryForm);
 
