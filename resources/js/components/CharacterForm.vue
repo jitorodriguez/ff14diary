@@ -18,7 +18,7 @@
             default: []
         },
         //Error state
-        errors: Object,
+        errors: Array,
     });
 
     const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
@@ -111,13 +111,11 @@
             <input type="submit" name="Delete" value="Delete" class="btn btn-danger">
         </form>
 
-        <!-- Error Section
-        <div v-if="errors.length" class="alert alert-dnager">
-            <ul>
-                <li v-for="error in errors">{{ error }}</li>
-            </ul>
-        </div> 
-        End of Error Section -->
+        <!-- Error Section -->
+        <ul v-if="errors.length" class="alert alert-dnager">
+            <li v-for="error in errors">{{ error }}</li>
+        </ul>
+        <!-- End of Error Section -->
     </div>
 
 </template>

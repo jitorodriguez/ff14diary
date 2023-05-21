@@ -15,6 +15,6 @@
     :serverid="{{ isset($character) ? json_encode($character->server) : old('serverid') }}"
     :jobs="{{isset($character) ? json_encode($character->jobs) : json_encode([])}}"
 
-    :errors="{{ json_encode($errors)}}"
+    :errors="{{ json_encode($errors->all())}}"
 >
 @endsection
