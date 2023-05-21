@@ -31,7 +31,7 @@ class EntryController extends Controller
     {
         $user = Auth::user();
         $characters = $user->characters;
-        return view('entries.create', compact('characters'));
+        return view('entries.form', compact('characters'));
     }
 
     /**
@@ -69,7 +69,7 @@ class EntryController extends Controller
     {
         $user = Auth::user();
         $characters = $user->characters;
-        return view('entries.edit', compact('entry', 'characters'));
+        return view('entries.form', compact('entry', 'characters'));
     }
 
     /**

@@ -9,8 +9,8 @@
     :jobs="{{ json_encode($jobs) }}"
 
     {{-- Form values --}}
-    :characterid="{{ isset($character) ? $character->id : old('name')}}"
-    :name="{{ isset($character) ? json_encode($character->name) : old('name') }}"
+    :characterid="{{ isset($character) ? $character->id : ''}}"
+    :name="{{ isset($character) ? json_encode($character->name) : json_encode(old('name')) }}"
     :serverid="{{ isset($character) ? json_encode($character->server) : old('serverid') }}"
     :active-jobs="{{isset($character) ? json_encode($character->jobs) : json_encode([])}}"
 

@@ -17,8 +17,11 @@ const app = createApp({});
 
 import HomeComponent from './components/HomeComponent.vue';
 import CharacterForm from './components/CharacterForm.vue';
+import EntryForm from './components/EntryForm.vue';
+
 app.component('home-component', HomeComponent);
 app.component('character-form', CharacterForm);
+app.component('entry-form', EntryForm);
 
 /**
  * The following block of code may be used to automatically register your
