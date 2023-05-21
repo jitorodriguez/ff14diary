@@ -29,8 +29,6 @@
         return props.jobs.filter(job => job.role === jobType);
     }
 
-    console.log(props.activeJobs);
-
 </script>
 
 <template>

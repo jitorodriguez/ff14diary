@@ -40,7 +40,7 @@ class CharactersController extends Controller
         $servers = Server::All();
         $jobs = Job::All();
 
-        return view("characters.create", compact("servers", "jobs"));
+        return view("characters.form", compact("servers", "jobs"));
     }
 
     /**
@@ -87,7 +87,7 @@ class CharactersController extends Controller
         $servers = Server::all();
         $jobs = Job::All();
 
-        return view('characters.create', compact('character', 'servers', 'jobs'));
+        return view('characters.form', compact('character', 'servers', 'jobs'));
     }
 
     /**

@@ -1,8 +1,8 @@
 <script setup>
 
-defineProps({
-        errors: Array
-    })
+    defineProps({
+            errors: Array
+    });
 
 </script>
 
