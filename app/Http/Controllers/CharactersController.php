@@ -104,6 +104,7 @@ class CharactersController extends Controller
         $character->update();
 
         //Retrieve all jobs to sync to character
+        $jobsToAssign = array();
         $jobs = Job::All();
         foreach($jobs as $job)
         {
@@ -112,6 +113,7 @@ class CharactersController extends Controller
         }
         
         $character->jobs()->sync($jobsToAssign);
+
         return redirect('/characters');
     }
 

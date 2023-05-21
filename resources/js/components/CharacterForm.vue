@@ -1,6 +1,8 @@
 <script setup>
 
-    import {ref} from "vue";
+    import DeleteButton from "./Form/DeleteButton.vue";
+    import Errors from "./Form/Errors.vue";
+    import Jobs from "./Jobs.vue";
 
     const props = defineProps({
         //Standard params
@@ -24,13 +26,6 @@
     const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
     
     const postAction = props.newMode ? '/characters' : '/characters/' + props.characterid;
-
-    function hasJob(jobID){
-        if(props.newMode)
-            return false;
-
-        return props.jobs.filter(job => job.id === jobID).length > 0;
-    }
 
 </script>
 
@@ -58,64 +53,24 @@
             <br>
 
             <!-- Jobs section -->
-            <h3>Jobs</h3>
             <div class="row">
-                 <!-- Job section (Column) -->
-                <div class="col-lg-6 col-md-6">
-                    <h5>Tanks</h5>
-                    <div v-for="tank in tanks" class='col-lg-12 col-md-12'>
-                        <input type="checkbox" :id="tank.shortname" :name="tank.shortname" :checked="hasJob(tank.id)">
-                        <label :for="tank.shortname">{{tank.name}}</label>
-                    </div>
-                </div>
-                <!-- End of Job section (Column) -->
-
-                 <!-- Job section (Column) -->
-                <div class="col-lg-6 col-md-6">
-                    <h5>Healers</h5>
-                    <div v-for="healer in healers" class='col-lg-12 col-md-12'>
-                        <input type="checkbox" :id="healer.shortname" :name="healer.shortname" :checked="hasJob(healer.id)">
-                        <label :for="healer.shortname">{{healer.name}}</label>
-                    </div>
-                </div>
-                <!-- End of Job section (Column) -->
-            </div>
-        
-             <!-- Job section (Full) -->
-            <div class="row" style="padding-top:10px">
-                <div class="col-lg-12 col-md-12">
-                    <h5>DPS</h5>
-                        <div v-for="dps in dpses" style="float:left;">
-                            <input type="checkbox" :id="dps.shortname" :name="dps.shortname" :checked="hasJob(dps.id)">
-                            <label style="padding-left: 5px; padding-right: 20px;" :for="dps.shortname">{{dps.name}}</label>
-                        </div>
-                </div>
-            </div>
-            <!-- End of Job section (Full) -->            
+                <h3>Jobs</h3>
+                <Jobs class="col-lg-6 col-md-6" title="Tanks" boot-width="6" :job-list="tanks" :active-jobs="jobs" />
+                <Jobs class="col-lg-6 col-md-6" title="Healers" boot-width="6" :job-list="healers" :active-jobs="jobs" />
+                <Jobs class="col-lg-12 col-md-12" title="DPS" boot-width="12" :job-list="dpses" :active-jobs="jobs" />
+            </div>     
             <!-- End of Jobs section -->
 
             <br>
-             <!-- Submit section -->
-            <button type="submit" class="btn btn-primary">
-                Save
-            </button>
-            <!-- End of Submit section -->
+            
+            <button type="submit" class="btn btn-primary"> Save </button>
 
         </form>
 
         <br>
 
-        <form v-if="!newMode" method="post" :action="postAction">
-            <input type="hidden" name="_token" :value="csrfToken">
-            <input type="hidden" name="_method" value="DELETE">
-            <input type="submit" name="Delete" value="Delete" class="btn btn-danger">
-        </form>
-
-        <!-- Error Section -->
-        <ul v-if="errors.length" class="alert alert-dnager">
-            <li v-for="error in errors">{{ error }}</li>
-        </ul>
-        <!-- End of Error Section -->
+        <DeleteButton v-if="!newMode" :post-action="postAction" :csrf-token="csrfToken" />
+        <Errors :errors="errors"/>
     </div>
 
 </template>
