@@ -15,7 +15,12 @@ use App\Http\Controllers\EntryController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Auth::routes();
+//Capture all routes to point to new SPA, exempt login/register
+Route::get('/{any?}', [App\Http\Controllers\HomeController::class, 'index'])->where('any', '^((?!login|register).)*$');
 
+/*
+DELETE: Once refactor for vue router is set
 Route::get('/', function () {
     return redirect()->route('home');
 });
@@ -38,4 +43,5 @@ Route::group(['middleware' => 'web'], function(){
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home'); 
+*/

@@ -18,7 +18,7 @@
         <div class="card-body" style="background: antiquewhite">
             Welcome {{name}}!
             <div v-if="promptCharacter">
-                <p>No characters found, <a href="/characters/create">register a character</a>?</p>
+                <p>No characters found, <router-link to="/characters">Register a character</router-link>?</p>
             </div>
         </div>
     </div>

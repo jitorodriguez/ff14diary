@@ -3,7 +3,10 @@
     import EntryComponent from  './EntryComponent.vue';
 
     defineProps({
-        entries: Array,
+        entries: {
+            type: Array,
+            default: []
+        },
         title: {
             type: String,
             default: "Your Entries"

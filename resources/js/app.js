@@ -6,6 +6,7 @@
 
 import './bootstrap';
 import { createApp } from 'vue';
+import { createRouter, createWebHashHistory } from 'vue-router';
 
 /**
  * Next, we will create a fresh Vue application instance. You may then begin
@@ -24,6 +25,24 @@ app.component('home-component', HomeComponent);
 app.component('characters-component', CharactersComponent);
 app.component('character-form', CharacterForm);
 app.component('entry-form', EntryForm);
+
+const routes = [
+    {
+        path: '/',
+        component: HomeComponent
+    },
+    {
+        path: '/characters',
+        component: CharactersComponent
+    }
+];
+
+const router = createRouter({
+    history: createWebHashHistory(),
+    routes
+});
+
+app.use(router);
 
 /**
  * The following block of code may be used to automatically register your
