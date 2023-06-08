@@ -16,6 +16,18 @@ use App\Http\Controllers\EntryController;
 |
 */
 Auth::routes();
+
+//Retrieve user information for inital load of Home Component
+Route::get('/get-home-data', function(){
+    $user = Auth::user();
+
+    return response()->json([
+        'name' => $user->name,
+        'hasCharacters' => $user->characters->count(),
+        'entries' => $user->entries->all()
+    ]);
+});
+
 //Capture all routes to point to new SPA, exempt login/register
 Route::get('/{any?}', [App\Http\Controllers\HomeController::class, 'index'])->where('any', '^((?!login|register).)*$');
 

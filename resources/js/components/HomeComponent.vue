@@ -1,15 +1,22 @@
 <script setup>
+    import { ref } from 'vue';
 
     import NoticeCenterComponent from "./NoticeCenterComponent.vue";
     import EntriesComponent from "./EntriesComponent.vue";
 
-    defineProps({
-        name: String,
-        hasCharacter: {
-            type: Boolean,
-            default: false
-        },
-        entries: Array
+    const name = ref("");
+    const hasCharacter = ref(null);
+    const entries = ref([]);
+
+    axios.defaults.headers.common = {
+        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+    }
+
+    axios.get('/get-home-data').then(response => {
+        console.log(response.data);
+        name.value = response.data.name;
+        hasCharacter.value = response.data.hasCharacter;
+        entries.value = response.data.entries;
     });
 
 </script>
