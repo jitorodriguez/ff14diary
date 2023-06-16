@@ -34,6 +34,11 @@ const routes = [
     {
         path: '/characters',
         component: CharactersComponent
+    },
+    {
+        path: '/characters/:newMode',
+        component: CharacterForm,
+        props: true
     }
 ];
 

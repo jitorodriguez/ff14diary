@@ -23,13 +23,24 @@ Route::get('/get-home-data', function(){
 
     return response()->json([
         'name' => $user->name,
-        'hasCharacters' => $user->characters->count(),
+        'hasCharacters' => !empty($user->characters->count()),
         'entries' => $user->entries->all()
+    ]);
+});
+
+//Retrieve users character data
+Route::get('/get-character-data', function(){
+    $user = Auth::user();
+
+    return response()->json([
+        'characters' => $user->characters->all()
     ]);
 });
 
 //Capture all routes to point to new SPA, exempt login/register
 Route::get('/{any?}', [App\Http\Controllers\HomeController::class, 'index'])->where('any', '^((?!login|register).)*$');
+
+
 
 /*
 DELETE: Once refactor for vue router is set

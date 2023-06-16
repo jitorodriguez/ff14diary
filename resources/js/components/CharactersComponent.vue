@@ -1,9 +1,15 @@
 <script setup>
-    defineProps({
-        characters: {
-            type: Array,
-            default: []
-        }
+
+    import { ref } from 'vue';
+    
+    const characters = ref ([]);
+
+    axios.defaults.headers.common = {
+        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+    }
+
+    axios.get('/get-character-data').then(response => {
+        characters.value = response.data.characters;
     });
 
 </script>
@@ -16,6 +22,6 @@
                 <a :href="'characters/' + character.id + '/edit'" >{{character.name}}</a>
             </li>
         </ul>
-        <a href="characters/create">Add a new character</a>
+        <router-link to="/characters/create"> Add a new character</router-link>
     </div>
 </template>

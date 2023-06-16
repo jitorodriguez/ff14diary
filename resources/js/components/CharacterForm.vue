@@ -7,7 +7,10 @@
     const props = defineProps({
         //Standard params
         servers: Array,
-        jobs: Array,
+        jobs: {
+            type: Array,
+            default: []
+        },
         //Form Values
         newMode: Boolean,
         name: String,
@@ -18,12 +21,15 @@
             default: []
         },
         //Error state
-        errors: Array,
+        errors: {
+            type: Array,
+            default: []
+        },
     });
 
     const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
     
-    const postAction = props.newMode ? '/characters' : '/characters/' + props.characterid;
+    const postAction = props.newMode === 'create' ? '/characters' : '/characters/' + props.characterid;
 
     function filterJobType(jobType){
         return props.jobs.filter(job => job.role === jobType);

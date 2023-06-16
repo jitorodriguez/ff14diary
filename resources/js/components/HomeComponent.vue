@@ -13,9 +13,8 @@
     }
 
     axios.get('/get-home-data').then(response => {
-        console.log(response.data);
         name.value = response.data.name;
-        hasCharacter.value = response.data.hasCharacter;
+        hasCharacter.value = response.data.hasCharacters;
         entries.value = response.data.entries;
     });
 
