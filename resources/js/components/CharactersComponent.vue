@@ -19,7 +19,7 @@
         <h3>Characters Listing</h3>
         <ul v-if="characters.length">
             <li v-for="character in characters">
-                <a :href="'characters/' + character.id + '/edit'" >{{character.name}}</a>
+                <router-link :to="'characters/' + character.id + '/edit'" >{{character.name}}</router-link>
             </li>
         </ul>
         <router-link to="/characters/create"> Add a new character</router-link>

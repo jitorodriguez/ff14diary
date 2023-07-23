@@ -1,24 +1,20 @@
 <script setup>
 
+    import { ref } from 'vue';
+
     import DeleteButton from "./Form/DeleteButton.vue";
     import Errors from "./Form/Errors.vue";
     import Jobs from "./Jobs.vue";
 
     const props = defineProps({
-        //Standard params
-        servers: Array,
-        jobs: {
-            type: Array,
-            default: []
-        },
         //Form Values
-        newMode: Boolean,
-        name: String,
-        characterid: String,
-        serverid: String,
-        activeJobs: {
-            type: Array,
-            default: []
+        newMode: {
+            type: String,
+            default: ""
+        },
+        characterid: {
+            type: String,
+            default: ""
         },
         //Error state
         errors: {
@@ -31,8 +27,38 @@
     
     const postAction = props.newMode === 'create' ? '/characters' : '/characters/' + props.characterid;
 
+    //Refs for general server data in form
+    const servers = ref([]);
+    const jobs = ref([]);
+
+    //Refs for specific for form input values
+    const name = ref("");
+    const serverid = ref("");
+    const activeJobs = ref([]);
+
+    //Load in form data, combine create/edit to single endpoint
+    axios.get('/get-character-form-data/' + props.characterid + props.newMode).then(response => {
+
+        console.log(response.data);
+
+        if(response.data.hasOwnProperty("name"))
+            name.value = response.data.name;
+
+        if(response.data.hasOwnProperty("serverid"))
+            serverid.value = response.data.serverid;
+
+        if(response.data.hasOwnProperty("servers"))
+            servers.value = response.data.servers;
+
+        if(response.data.hasOwnProperty("jobs"))
+            jobs.value = response.data.jobs;
+
+        if(response.data.hasOwnProperty("activejobs"))
+            activeJobs.value = response.data.activejobs;
+    });
+
     function filterJobType(jobType){
-        return props.jobs.filter(job => job.role === jobType);
+        return jobs.value.filter(job => job.role === jobType);
     }
 
 </script>

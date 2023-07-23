@@ -39,6 +39,11 @@ const routes = [
         path: '/characters/:newMode',
         component: CharacterForm,
         props: true
+    },
+    {
+        path: '/characters/:characterid/edit',
+        component: CharacterForm,
+        props: true
     }
 ];
 
