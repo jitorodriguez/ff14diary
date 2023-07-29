@@ -20,7 +20,7 @@
     <div>
         <div class="col-md-12" style="display: flex; justify-content: left; position:relative; margin-bottom: 10px">
             <h3>{{title}}</h3>
-            <a v-if="canCreateEntries" href="/entries/create" style="position:absolute; right: 0px;"><button class="btn btn-primary">Add</button></a>
+            <router-link v-if="canCreateEntries" :to="'entries/create'" style="position:absolute; right: 0px; pointer-events:none;" ><button :disabled="canCreateEntries" class="btn btn-primary">Add</button></router-link>
         </div>
 
         

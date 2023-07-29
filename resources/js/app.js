@@ -31,6 +31,7 @@ const routes = [
         path: '/',
         component: HomeComponent
     },
+    //Character Routes
     {
         path: '/characters',
         component: CharactersComponent
@@ -44,7 +45,17 @@ const routes = [
         path: '/characters/:characterid/edit',
         component: CharacterForm,
         props: true
+    },
+    //Entry Routes
+    {
+        path: '/entries/create',
+        component: EntryForm
+    },
+    {
+        path: '/entries/:characterid/edit',
+        component: EntryForm
     }
+    //entries/4/edit
 ];
 
 const router = createRouter({

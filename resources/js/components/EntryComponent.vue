@@ -19,7 +19,7 @@
             <!-- Add time length from entry -->
         </p>
         <p><pre>{{body}}</pre></p>
-        <a style="float:right" :href="'entries/' + id +'/edit'">Edit</a>
+        <router-link :to="'entries/' + id +'/edit'" style="float:right; pointer-events: none; color: darkgrey;" >Edit</router-link>
     </div>
     
 </template>

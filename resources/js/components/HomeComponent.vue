@@ -4,6 +4,8 @@
     import NoticeCenterComponent from "./NoticeCenterComponent.vue";
     import EntriesComponent from "./EntriesComponent.vue";
 
+    const loaded = ref(false);
+
     const name = ref("");
     const hasCharacter = ref(null);
     const entries = ref([]);
@@ -16,6 +18,8 @@
         name.value = response.data.name;
         hasCharacter.value = response.data.hasCharacters;
         entries.value = response.data.entries;
+
+        loaded.value = true;
     });
 
 </script>
@@ -25,15 +29,20 @@
         <div class="row justify-content-center">
              <div class="col-md-8">
 
-                 <!-- Notice Center Component -->
-                <NoticeCenterComponent :name=name :prompt-character=!hasCharacter />
-                <!-- End Notice Center Component -->
+                <!-- Loading Indicator -->
+                <div v-if="!loaded">Loading...</div>
+                
+                <div v-else>
+                    <!-- Notice Center Component -->
+                    <NoticeCenterComponent :name=name :prompt-character=!hasCharacter />
+                    <!-- End Notice Center Component -->
 
-                <br>
+                    <br>
 
-                <!-- Entries List Component -->
-                <EntriesComponent :entries="entries" :can-create-entries=hasCharacter />
-                <!-- End Entries List Component -->
+                    <!-- Entries List Component -->
+                    <EntriesComponent :entries="entries" :can-create-entries=hasCharacter />
+                    <!-- End Entries List Component -->
+                </div>                 
             </div>
         </div>
     </div>

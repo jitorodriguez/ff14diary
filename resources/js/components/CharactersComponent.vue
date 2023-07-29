@@ -17,7 +17,12 @@
 <template>
     <div class="container">
         <h3>Characters Listing</h3>
-        <ul v-if="characters.length">
+
+        <!-- Loading Indicator -->
+        <div v-if="!characters.length">Loading...</div>
+
+        <!-- Character Listing -->
+        <ul v-else>
             <li v-for="character in characters">
                 <router-link :to="'characters/' + character.id + '/edit'" >{{character.name}}</router-link>
             </li>
